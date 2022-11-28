@@ -1,2 +1,4 @@
-# checker_set_webhook_monobankk
-Will install the webhook if the client does not have it
+## Checker Set WebHook MONOBANK
+***
+Моніторить особистий рахунок на наявність встановленого webHookUrl.
+При його автоматичному відключенні, встановлює його.
