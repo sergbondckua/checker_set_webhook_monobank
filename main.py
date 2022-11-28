@@ -56,6 +56,7 @@ def main():
 
 
 if __name__ == '__main__':
+    main()
     # Launch Scheduler
     scheduler = BlockingScheduler(timezone=pytz.timezone("Europe/Kiev"))
 
