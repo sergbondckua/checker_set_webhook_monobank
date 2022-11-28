@@ -26,12 +26,9 @@ def main():
         raise monobank.Error("Wrong api token", error)
     if not mono_client.get_client_info().get("webHookUrl"):
         mono_client.create_webhook(url=os.environ.get("MONOBANK_WEBHOOK_URL"))
-        print(mono_client.get_client_info())
         logging.info("Webhook was created")
     else:
         logging.info("Webhook is already installed")
-    # client = SetMonoWebhook(os.environ.get('MONOBANK_TOKEN'))
-    # client.install_webhook(os.environ.get('MONOBANK_WEBHOOK_URL'))
 
 
 if __name__ == '__main__':
