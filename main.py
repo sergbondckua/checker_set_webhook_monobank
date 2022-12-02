@@ -21,7 +21,7 @@ def main():
     except monobank.TooManyRequests as error:
         logging.error(error)
         time.sleep(5)
-        mono_client = monobank.Client(token=os.environ.get("MONOBANK"))
+        mono_client = monobank.Client(token=os.environ.get("MONOBANK_TOKEN"))
     except monobank.Error as error:
         raise monobank.Error("Wrong api token", error)
     if not mono_client.get_client_info().get("webHookUrl"):
