@@ -18,15 +18,13 @@ def main():
     """Main function"""
     try:
         mono_client = monobank.Client(token=os.environ.get("MONOBANK_TOKEN"))
-    except monobank.TooManyRequests as error:
-        logging.error(error)
-        time.sleep(10)
-        mono_client = monobank.Client(token=os.environ.get("MONOBANK_TOKEN"))
         if not mono_client.get_client_info().get("webHookUrl"):
             mono_client.create_webhook(url=os.environ.get("MONOBANK_WEBHOOK_URL"))
             logging.info("Webhook was created")
         else:
             logging.info("Webhook is already installed")
+    except monobank.TooManyRequests as error:
+        logging.error(error)
     except monobank.Error as error:
         logging.error(monobank.Error("Wrong api token", error))
 
@@ -37,7 +35,7 @@ if __name__ == '__main__':
     scheduler = BlockingScheduler(timezone=pytz.timezone("Europe/Kiev"))
 
     # Specified time
-    scheduler.add_job(main, 'cron', hour='*/1')
+    scheduler.add_job(main, 'cron', minute='*/59')
 
     # Starting the daemon
     scheduler.start()
